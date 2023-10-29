@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .cool-heading {
+      font-size: 36px; /* Set the font size to make it big */
+      color: navy;    /* Set the text color to navy blue */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+      font-family: Arial, sans-serif; /* Specify the font family */
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    form {
+      display: grid;
+      gap: 0.5rem;
+    }
+    
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+    
+    input[type="file"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    button {
+      grid-column: span 2;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    .file-link {
+      margin-bottom: 1rem;
+    }
+    
+    .file-link a {
+      text-decoration: none;
+      color: #007BFF;
+    }
+    
+    .file-link a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        max-width: 90%;
+      }
+    }
+    </style>
+</head>
+
+<body>
+  <div>
+    <h1 class="cool-heading">File Sharing System</h1><br><br><br>
+  </div>
+  <% if (locals.fileLink != null) { %>
+    <div style="margin-bottom: 1rem;text-align: center;">
+      Your file is upload
+      <a href="<%= locals.fileLink %>"><%= locals.fileLink %></a>
+    </div>
+  <% } %>
+  <form action="/upload" method="post" style="display: grid; gap: .5rem; grid-template-columns: auto 1fr; max-width: 500px; margin: 0 auto;" enctype="multipart/form-data">
+    <label for="file">File:</label>
+    <input type="file" id="file" name="file" required />
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" /><br><br>
+    <button style="grid-column: span 2;" type="submit">Share</button>
+  </form>
+</body>
+</html>
